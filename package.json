@@ -1,0 +1,44 @@
+{
+  "name": "lab-18-asset-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest -i --coverage",
+    "lint": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meganrm/lab-13-object-relational-mapping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meganrm/lab-13-object-relational-mapping/issues"
+  },
+  "homepage": "https://github.com/meganrm/lab-13-object-relational-mapping#readme",
+  "dependencies": {
+    "aws-sdk": "^2.149.0",
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.4",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "debug": "^3.1.0",
+    "eslint": "^4.9.0",
+    "jest": "^21.2.1",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
+    "superagent": "^3.8.0"
+  }
+}
