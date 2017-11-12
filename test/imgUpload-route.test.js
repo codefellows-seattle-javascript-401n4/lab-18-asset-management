@@ -1,7 +1,8 @@
 'use strict'
 
-const request = require('superagent')
+const request = require('superagent');
 const expect = require('expect');
+const Image = require('../model/image');
 
 process.env.DB_URL = 'mongodb://localhost:27017/fileUpload_stg';
 const PORT = 4000;
@@ -11,6 +12,7 @@ const API = 'api/1.0';
 
 beforeAll(() => {
   require('../lib/_server').start(PORT);
+  return Image.remove({});  
 });
 
 afterAll(() => {
@@ -35,7 +37,7 @@ describe('POST', () => {
   });
 
   test('creating a new image model returns an ID and a 200', () => {
-    
+
     return request
     .post(`${HOST}:${PORT}/${API}/image/${imgID}/new-image`)
     .field('title', 'mj')

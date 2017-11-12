@@ -48,14 +48,15 @@ imgRouter.post('/image', jsonParser, (req, res, next) => {
 
 imgRouter.post('/image/:id/new-image', upload.single('photo'), (req, res, next) => {
      
-    if(req.params.id === null) return next(400);
     Image.findOne({_id: req.params.id})
      .then(img => {
-        var data = { Key: img.name, Body: img.path };
-        s3.putObject(data, function(err, data){
-            if (err) console.log('Error uploading data: ', data); 
+        if(img){ 
+          var data = { Key: img.name, Body: img.path };
+          s3.putObject(data, function(err, data){
+            if (err) res.send('Error uploading data: ', data); 
             else res.send('Succesfully uploaded the image!'); 
-        });
+          });
+        } else { next(404); }
      })
-     .catch(console.log(err))
+     .catch(500);
 });
