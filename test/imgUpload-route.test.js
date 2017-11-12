@@ -5,6 +5,7 @@ const expect = require('expect');
 const Image = require('../model/image');
 
 process.env.DB_URL = 'mongodb://localhost:27017/fileUpload_stg';
+process.env.AWS_BUCKET = 'paulamookerjee';
 const PORT = 4000;
 const HOST = 'http://localhost';
 const API = 'api/1.0';
