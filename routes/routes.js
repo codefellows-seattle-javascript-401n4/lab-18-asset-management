@@ -22,14 +22,14 @@ Router.post('/api/upload', bodyParser, (req, res, next)=> {
     .catch(next)
 }) 
 
-
 Router.post(`/api/amazon/:id`, upload.single('CF - still life'), (req, res, next)=>{
 //   if(!req.body) next({statusCode:400, message:'bad request'});
   Image.findOne({_id:req.params.id})
   .then(image=>{
     let key = `Image ${image._id}`
     console.log('in amazon routes, key: ', key);
-    return s3(image.url, key)
+    s3(image.url, key);
+    res.send("upload successful")
   })
   .catch (next)
 })
