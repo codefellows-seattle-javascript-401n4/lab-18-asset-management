@@ -4,7 +4,7 @@ const PORT = 8000;
 const Image = require('../model/image');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI||'mongodb://xfvgf7gysd78fgsydfy78sd7f:dfs87df6sd8fsdf87g6dsf87g7xdfg77dx8fg8@ds159235.mlab.com:59235/irynasimages';
 mongoose.connect(MONGODB_URI);
 const expect = require('expect');
 const superagent = require('superagent');
@@ -43,7 +43,6 @@ describe('POST to /api/upload', ()=>{
             expect(res.statusCode).toEqual(200);
             expect(res.body).not.toBe(null);
             objectID = res.body;
-            // console.log('objectID ', objectID )
         })
         .catch()
     })

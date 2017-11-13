@@ -11,8 +11,8 @@
 * used `multer` to parse the file upload request
 
 #### Server Endpoint
-* `POST` - `/api/upload`
-* `POST` - `/api/amazon/:id`
+* `POST` - `/api/upload`- uploads the image to mongodb
+* `POST` - `/api/amazon/:id`-finds image by ID and uploads it to the bucket
 
 #### Tests
 * `POST` - **200** - test that the upload worked and a resource object is returned

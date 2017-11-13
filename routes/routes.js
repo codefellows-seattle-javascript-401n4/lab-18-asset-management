@@ -9,12 +9,8 @@ const upload = multer({dest: `${__dirname}/../temp`});
 
 
 Router.post('/api/upload', bodyParser, (req, res, next)=> {
+    if(!req.body.title||!req.body.url) return next({statusCode:400, message:"bad request"});
     let image = new Image(req.body);
-    // Image.findOne({url:req.url})
-    // .then(image => {
-    //     if (image) return next({statusCode:400, message:'image exists'});
-    // })
-    // .catch(next());
     image.save()
     .then(image => {
         res.send(image._id)
@@ -23,11 +19,10 @@ Router.post('/api/upload', bodyParser, (req, res, next)=> {
 }) 
 
 Router.post(`/api/amazon/:id`, upload.single('CF - still life'), (req, res, next)=>{
-//   if(!req.body) next({statusCode:400, message:'bad request'});
   Image.findOne({_id:req.params.id})
   .then(image=>{
+      if(!image) return next({statusCode:404, message:"image not found"})
     let key = `Image ${image._id}`
-    console.log('in amazon routes, key: ', key);
     s3(image.url, key);
     res.send("upload successful")
   })
