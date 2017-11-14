@@ -1,0 +1,38 @@
+{
+  "name": "lab-17-bearer-auth",
+  "version": "1.0.0",
+  "description": "![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 17: Bearer Auth ===",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanhthaoluu/lab-17-bearer-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanhthaoluu/lab-17-bearer-auth/issues"
+  },
+  "homepage": "https://github.com/hanhthaoluu/lab-17-bearer-auth#readme",
+  "dependencies": {
+    "bcrypt": "latest",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "jsonwebtoken": "latest",
+    "material-components-web": "^0.24.0",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.0",
+    "s": "^0.1.1"
+  },
+  "devDependencies": {
+    "superagent": "^3.8.0",
+    "jest": "^21.2.1"
+  }
+}

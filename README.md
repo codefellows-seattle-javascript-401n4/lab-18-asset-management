@@ -1,6 +1,20 @@
 ![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 18: Image Uploads w/ AWS S3
 ===
 
+
+#shortcuts to create gitignore and adding files to gitignore
+//create a blank gitignore
+cat .gitignore
+//add db to .gitignore
+$echo 'db' >> .gitignore
+//to view what is in .gitignore
+cat .gitignore
+
+//reset I what staged to be commited
+git reset
+
+//heroku local start my Heroku and read my .env folder automatically
+
 ## Submission Instructions
   * fork this repository & create a new branch for your work
   * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
