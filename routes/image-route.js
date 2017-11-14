@@ -45,7 +45,7 @@ imageRouter.post('/image/:id/new-image', upload.array('upl', 1), (req,res,next) 
   }
   Image.findOne({_id: req.params.id})
   .then( img => {
-    let params = {Bucket: process.env.AWS_BUCKET, Key: img.name, Body: img.path};
+    let params = {Bucket: process.env.AWS_BUCKET, Key: '13320547_304334873231983_610652625344259341_o.jpg', Body: img.path};
     s3.putObject(params, function(err,data){
       if(err) console.log(err);
       else res.send('Sucessful upload');
