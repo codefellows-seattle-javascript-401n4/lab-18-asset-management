@@ -17,7 +17,7 @@ describe('post test', () => {
     return superagent.post('http://localhost:3000/image')
     .send({
       title: 'me',
-      url: '13320547_304334873231983_610652625344259341_o.jpg',
+      path: '../model/13320547_304334873231983_610652625344259341_o.jpg',
     })
     .then( res => {
       expect(res.status).toBe(200);
