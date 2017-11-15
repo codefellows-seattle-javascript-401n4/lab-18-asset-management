@@ -32,18 +32,20 @@ describe('POST', () => {
       .then(res => {       
         expect(res.status).toEqual(200);
         expect(res.text).not.toBe(undefined);
-        winduImg = res.text; 
-      // console.log(imgID);     
+        winduImg = res.body.message; 
+        console.log(winduImg);     
       });
   });
 
   test('create a model and returns 200', () => {
-    
+
     return request
       .post(`localhost:5500/image/${winduImg}/new-image`)
+      .set({'Content-Type':'multipart/form-data'})
+      .attach('windu', `${__dirname}/../asset/windu.jpg`)
       .then(res => {       
         expect(res.status).toEqual(200);
-        expect(res.text).toBe('Successful load of image');
+        expect(res.text).toBe('Successful upload of image');
       });
   });
 });

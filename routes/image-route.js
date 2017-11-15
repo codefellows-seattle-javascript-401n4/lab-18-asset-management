@@ -45,7 +45,7 @@ imageRouter.post('/image/:id/new-image', upload.single('windu'), (req, res, next
       let params = {Bucket: process.env.AWS_BUCKET, Key: 'key', Body: img.path};
       s3.putObject(params, function(err, data){
         if(err) console.log(err);
-        else res.send('Sucessful upload of image');
+        else res.send('Successful upload of image');
       });
     })
     .catch(err => next(err));
