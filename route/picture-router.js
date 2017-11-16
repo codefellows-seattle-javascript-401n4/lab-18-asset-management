@@ -1,38 +1,54 @@
 'use strict';
 
-const {Router} = require('express');
+
 const multer = require('multer');
-const httpErrors = require('http-errors');
-const s3 = require('../lib/s3.js');
+const multerS3 = require('multer-s3');
+const aws = require('aws-sdk');
 const Picture = require('../model/picture.js');
-const bearerAuth = require('../lib/bearer-auth-middleware.js');
+const jsonParser = require('body-parser').json();
+const s3 = new aws.S3();
+const pictureRouter = module.exports = require('express').Router();
+console.log(process.env.AWS_BUCKET);
 
-const upload = multer({dest: `${__dirname}/../temp`});
-console.log(__dirname + '/../temp');
-module.exports = new Router()
-  .post('/pictures', bearerAuth, upload.any(), (req, res, next) => {
-  // req.body and req.files
-    if(!req.account)
-      return next(httpErrors(401, '__REQUEST_ERROR__ no account found'));
-    if(!req.body.title || req.files.length > 1 || req.files[0].fieldname !== 'picture')
-      return next(httpErrors(400, '__REQUEST_ERROR__ title or picture was not provided'));
+aws.config.update({
+  accessKeyId : process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
 
-    let file = req.files[0];
-    console.log(file);
+//multer s3 docs
+let upload = multer({
+  storage: multerS3({
+    s3:s3,
+    bucket: process.env.AWS_BUCKET,
+    key: function(req, file, cb){
+      console.log('file ', file);
 
-    let key = `${file.filename}.${file.originalname}`;
-    return s3.upload(file.path, key)
-      .then(url => {
-        console.log('url', url);
-        return new Picture({
-          title: req.body.title,
-          account: req.account._id,
-          url,
-        }).save();
-      })
-      .then(picture => res.json(picture))
-      .catch(next);
+      cb(null, file.fieldname);
+    },
+  }),
+});
 
-    res.sendStatus(418);
+pictureRouter.post('/picture', jsonParser, (req, res, next) => {
+  console.log('goes here');
+  // if(req.body === null){
+  //   res.send({statusCode:404, message: 'not found'});
+  // }
+  new Picture(req.body).save()
+    .then( pic => res.send({statusCode:200, message: pic._id}))
+    .catch( err => next(err));
+});
 
-  });
+pictureRouter.post('/picture/:id/awsPic', upload.single('pic'), (req, res, next) => {
+  if(req.params.id === null){
+    res.send({statusCode: 404, message: 'Not Found'});
+  }
+  Picture.findOne({_id: req.params.id})
+    .then( picture => {
+      let params = {Bucket: process.env.AWS_BUCKET, Key: 'key', Body: picture.path};
+      s3.putObject(params, function(err, data){
+        if(err) console.log(err);
+        else res.send('Picture uploaded to AWS');
+      });
+    })
+    .catch(err => next(err));
+});
