@@ -53,3 +53,7 @@
   s3.deleteObject(params)
   ```
 * don't forget to remove the resource from the DB
+
+* echo '{"username":"awsman1", "password":"mypass","email":"ddavi
+s1@gmail.com"}' | http :5500/signup/
+* how to sign in `http :5500/login -a awsman:mypass`
