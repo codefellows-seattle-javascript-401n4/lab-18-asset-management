@@ -1,18 +1,27 @@
 ![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 18: Image Uploads w/ AWS S3
 ===
+**Directions**
+To test, open a terminal and use the command run "npm test".
+
+You have to create your own .env file with the following properties:
+
+PORT=5000 (or your preference)
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+S3_BUCKET=
 
 ## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+  x fork this repository & create a new branch for your work
+  x write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
+  x push to your repository
+  x submit a pull request to this repository
+  x submit a link to your PR in canvas
+  x write a question and observation on canvas
 
 ## Learning Objectives  
-* students will be able to upload static assets to AWS S3
-* students will be able to retrieve a cdn url that contains the previously uploaded static asset
-* students will be able to work with secret and public access keys
+x students will be able to upload static assets to AWS S3
+x students will be able to retrieve a cdn url that contains the previously uploaded static asset
+x students will be able to work with secret and public access keys
 
 ## Requirements
 #### Configuration
