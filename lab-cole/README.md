@@ -8,11 +8,8 @@ Enter in Command Line
 
 
 ## Program Issues
-* ...
-
-
-## Current Program Status
-* started over with starter code, developer code pending
+* Code base issue...(no freaking clue)
+* Port issues, argument must be >= 0 and < 65536> (probably)
 
 
 ## Developer Installs
